@@ -1,46 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <string>
 #include <functional>
+#include <time.h>
+#include <wiringPi.h>
 
 using namespace std;
 
-class Agenda { // Classe para marcar
-private:
-    string name;   // Nome(atributo) privado
-public:
-    // Construtor inicial
-    Agenda(const string& p_name) : name(p_name) // Construtor marca o nome da pessoa
-    {cout << "Marcado para a pessoa: " << name << endl;}
-    // Destrutor ao final
-    ~Agenda()   // Destrutor realiza uma mensagem de sucesso
-    {cout << "Tudo realizado, estou indo embora" << name << endl;}
-};
+long int tempo_atual = 1, tempo_anterior = 0;
 
 
+// Principio de codigo basico medidor de aceleração e velocidade
 // Aplica o agendamento para ida e volta (função transversal)
-void agendamento(const string& name, const string& texto){
-    Agenda marcador(name);  // Imprimir a confirmação com o nome da pessoa
-    cout << texto << endl;    // Texto de marcação
-    // Aqui se supõe a colocação de um dia para ida e volta
+float media(float ini, float fin, const string& a){
+    if(tempo_atual == tempo_anterior) return;               // Média
+    float res = ((fin-ini)/(tempo_atual-tempo_anterior));   // delay 100ms;
+    cout << "A " << a << " atual é" << res << endl;         // Imprimir texto
+    return res; // delay 100ms
 }
 
 
-// Atendimento e retorno médico
-class Marcar {
-private:
-    string nome_do_paciente;
+// Valores estimados lineares
+class estimacao_linear{
 public:
-    Marcar(const string& nome) : nome_do_paciente(nome) {}    // Construtor inicia atribuindo name a nome_paciente
-    void atendimento() {agendamento(nome_do_paciente, "Chegar dia:");}   // Método para marcar atendimento
-    void retorno() { agendamento(nome_do_paciente, "Retornar dia:");}  // Método para marcar retorno
+    float posicao_primaria;     // Posição anterior
+    float posicao_secundaria;   // Posição atual
+    float velocidade_primaria;  // Velocidade anterior
+    float velocidade_secundaria;// Velocidade atual
+    float acel;                 // Aceleração atual
+    estimacao(float posi){
+        posicao_primaria = posi; // Construtor atribuindo a posição inicial
+        posicao_secundaria = 0.00;  // Iniciador
+        velocidade_primaria = 0.00; // Iniciador
+        velocidade_secundaria = 0.00;   // Iniciador
+        acel = 0.00;
+    }
+    void calc_velocidade() {velocidade_secundaria = media(posicao_primaria, posicao_secundaria, "velocidade" );}   // Método para calcular a velocidade atual
+    void calc_aceleracao() {acel = media(velocidade_primaria, velocidade_secundaria, "aceleração");}  // Método para calcular a aceleração atual
+    void atualizacao(){ // Método para atualizar dados
+        posicao_primaria = posicao_secundaria;  // Atualiza posição
+        velocidade_primaria = velocidade_secundaria;    // Atualiza velocidade
+    }
 };
 
 
+// Programa de estimação de velocidades, acelerações e temperaturas
 int main() {
-    string nome;
-    cout << "Digite o nome do paciente" << endl;
-    cin >> nome;
-    Marcar paciente(nome);        // Objeto paciente do hospital
-    paciente.atendimento(); // Marcar atendimento
-    paciente.retorno();     // Marcar retorno
+    srand(time(NULL));              // Inicar gerador aleatorio
+    if (wiringPiSetup() == -1) {return 1;}  // Iniciar biblioteca
+    estimacao_linear movel(0);             // Iniciar objeto
+    while(1){
+        tempo_atual = millis ();    // Atualiza tempo
+        cout << "iniciando novas medições" << endl; // Inicar medições
+        movel.posicao_secundaria = rand()%100;  // Gerador aleatorio de posição.
+        movel.calc_velocidade();    // Calcular velocidade
+        movel.calc_aceleracao();    // Calcular aceleração
+        movel.atualizacao();        // Atualizar
+        cout << endl;               // Quebrar linha
+        tempo_anterior = tempo_atual;   // Atualiza tempo
+        delay(100); // evitar problemas de sobrecarga
+    }
 }
