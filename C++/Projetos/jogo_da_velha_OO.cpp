@@ -75,7 +75,7 @@ public:
                 if(j < 2) cout << " | ";
             }
             cout << endl;
-            if(i < 2) cout << "       ---+---+---" << endl;
+            if(i < 2) cout << "        ---+---+---" << endl;
         }
         cout << endl;
     }
@@ -87,6 +87,7 @@ int main() {
     char jogador = 'O'; // começa o jogador O
     int linha, coluna;
     bool ver;
+    jogo.imprimir();
 
     cout << "Quem inicia é o jogador X" << endl;
     while(true) {
@@ -109,17 +110,23 @@ int main() {
         }
 
         if(jogo.verificar()) {
-            cout << "Fim de jogo! Reiniciando tabuleiro...\n" << endl;
-            jogo.iniciar();
-            jogo.imprimir();
-        }
-        else if(jogo.cheio()) {
-            cout << "Empate! Tabuleiro cheio.\nReiniciando tabuleiro...\n" << endl;
-            jogo.iniciar();
+            cout << "Fim de jogo!\n" << endl;
             cout << "Deseja continuar jogando digite 's' \n" << endl;
             cin >> jogador;
             if(jogador == 's'){
             }else{return 0;}
+            cout << "Reiniciando tabuleiro...\n" << endl;
+            jogo.iniciar();
+            jogo.imprimir();
+        }
+        else if(jogo.cheio()) {
+            cout << "Empate! Tabuleiro cheio.\n"<<endl;
+            cout << "Deseja continuar jogando digite 's' \n" << endl;
+            cin >> jogador;
+            if(jogador == 's'){
+            }else{return 0;}
+            cout << "Reiniciando tabuleiro...\n" << endl;
+            jogo.iniciar();
             jogo.imprimir();
         }
     }
