@@ -67,7 +67,7 @@ public:
     }
 
     void imprimir() {
-        cout << "\n   Colunas:  1   2   3" << endl;
+        cout << "\nColunas: 1   2   3" << endl;
         for(int i = 0; i < 3; i++) {
             cout << "Linha " << i+1 << ": ";
             for(int j = 0; j < 3; j++) {
