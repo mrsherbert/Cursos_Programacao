@@ -1,2 +1,2 @@
-# CursosDio
-Repositorio de projetos de cursos da Dio
+# Cursos de Programação
+Repositorio de cursos em programação
