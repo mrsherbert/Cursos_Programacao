@@ -4,8 +4,8 @@
 #include "Adafruit_LEDBackpack.h"
 Adafruit_7segment dis = Adafruit_7segment();
 
-int hora = 0;   // Hora inicial
-int minuto = 0;  // Minuto inicial
+int minuto = 0;   // Hora inicial
+int segundos = 0;  // Minuto inicial
 int time = 0;
 
 void setup() {
@@ -13,18 +13,15 @@ void setup() {
 }
 void loop() {
   while(1){
-    time = hora*100 + minuto;
+    time = minuto*100 + segundos;
     dis.println(time);
     delay(1000);
     //delay(60000); // medidor de hora, 60000 milis == 1 minuto
     dis.writeDisplay();
-    minuto++;
-    if(minuto == 60){
-      	hora++;
-      	minuto = 0;
-    }
-    if(hora == 13){
-      	hora = 0;
+    segundos++;
+    if(segundos == 60){
+      	minuto++;
+      	segundos = 0;
     }
   }
 }
