@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ex1"/>
+        <attribute name="authors" value="Herbert T"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-11 12:22:17 "/>
+        <attribute name="created" value="SGVyYmVydCBUO0hFUkJFUlQ7MjAyNS0wOC0xMTsiMTI6MDk6MjcgIjsyNTUx"/>
+        <attribute name="edited" value="SGVyYmVydCBUO0hFUkJFUlQ7MjAyNS0wOC0xMTsiMTI6MjI6MTcgIjs0OzI2NTY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="nota1, nota2, nota3, nota4" type="Real" array="False" size=""/>
+            <declare name="aluno" type="String" array="False" size=""/>
+            <input variable="aluno"/>
+            <input variable="nota1"/>
+            <input variable="nota2"/>
+            <input variable="nota3"/>
+            <input variable="nota4"/>
+            <output expression="&quot;O aluno &quot; &amp; aluno &amp; &quot;, Obteve m&#233;dia: &quot; &amp; (nota1+nota2+nota3+nota4)/4" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

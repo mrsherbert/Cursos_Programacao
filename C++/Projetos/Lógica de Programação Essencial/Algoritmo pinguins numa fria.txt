@@ -1,0 +1,17 @@
+Algoritmo pinguins numa fria:
+- Inicio.
+- Todos os pinguins iniciam em um lado (direito).
+- O filho e em seguida o pai de uma família1 entram na ponte.
+- Vai um pai e um filho da mesma família (família1) para o lado esquerdo pela ponte.
+- O pai fica do lado esquerdo, o filho fica na ponte.
+- Volta o filho (família1) para o lado direito na ponte.
+- Vai o filho (família1) é um filho (família2) na ponte para o lado esquerdo.
+- Fica o pai e o filho (familia 1) do lado esquerdo fora da ponte.
+- Volta o filho (familia 2) para o lado direito pela ponte.
+- Vai o filho e o pai da (família2) para o lado direito pela ponte.
+- Fica o pai do lado esquerdo e volta o filho(familia2) pela ponte para o lado direito.
+- Vai o filho (família2) é um filho (família3) na ponte para o lado esquerdo.
+- Fica o filho (família2) do lado esquerdo e volta o filho (família3) para o lado direito pela ponte.
+- Vai o pai e o filho da (família3) para o lado esquerdo.
+- Fica o pai do lado esquerdo e depois o filho da (família3).
+- Fim.

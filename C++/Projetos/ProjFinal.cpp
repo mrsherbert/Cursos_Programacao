@@ -54,7 +54,7 @@ int main() {
         arv_linear.inserir(primos[i]);}
     int num_desejado;
     while (true) {
-        cout << "Digite o provavel numero primo: ";
+        cout << "Digite o provavel número primo: ";
         cin >> num_desejado;
         if (num_desejado == -1) {break;}
         if (arv_linear.procurar(num_desejado)) {cout << "O número é primos." << endl;

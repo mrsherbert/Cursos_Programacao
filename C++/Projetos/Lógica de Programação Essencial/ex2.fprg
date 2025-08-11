@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ex2"/>
+        <attribute name="authors" value="Herbert T"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-11 12:19:17 "/>
+        <attribute name="created" value="SGVyYmVydCBUO0hFUkJFUlQ7MjAyNS0wOC0xMTsiMTI6MTU6MDQgIjsyNTQz"/>
+        <attribute name="edited" value="SGVyYmVydCBUO0hFUkJFUlQ7MjAyNS0wOC0xMTsiMTI6MTk6MTcgIjsyOzI2NjA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="jan, fev, mar, abr" type="Integer" array="False" size=""/>
+            <input variable="jan"/>
+            <input variable="fev"/>
+            <input variable="mar"/>
+            <input variable="abr"/>
+            <if expression="(jan+fev+mar+abr)/4&gt;5000">
+                <then>
+                    <output expression="&quot;Voc&#234; receber&#225; um abono de 10%&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Voc&#234; receber&#225; um abono de 3%&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
