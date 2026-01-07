@@ -33,6 +33,8 @@ def cadastrar_conta(contas):
     agencia = input("Informe a agência:")
     cpf = input("Informe o CPF:")
 
+    cpf = "".join(filter(str.isdigit, cpf))
+
     valor_atual = 0
     for conta in contas:
         if conta["agencia"] == agencia:
