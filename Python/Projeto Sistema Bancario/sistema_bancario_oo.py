@@ -1,20 +1,12 @@
 from abc import ABC, abstractmethod
 from datetime import date
 
-
-# =========================
-# Transação (Interface)
-# =========================
 class Transacao(ABC):
 
     @abstractmethod
     def registrar(self, conta):
         pass
 
-
-# =========================
-# Depósito
-# =========================
 class Deposito(Transacao):
     def __init__(self, valor: float):
         self.valor = valor
@@ -23,10 +15,6 @@ class Deposito(Transacao):
         conta.depositar(self.valor)
         conta.historico.adicionar_transacao(self)
 
-
-# =========================
-# Saque
-# =========================
 class Saque(Transacao):
     def __init__(self, valor: float):
         self.valor = valor
@@ -35,10 +23,6 @@ class Saque(Transacao):
         if conta.sacar(self.valor):
             conta.historico.adicionar_transacao(self)
 
-
-# =========================
-# Histórico
-# =========================
 class Historico:
     def __init__(self):
         self.transacoes = []
@@ -53,10 +37,6 @@ class Historico:
             extrato += f"{nome}: R$ {t.valor:.2f}\n"
         return extrato
 
-
-# =========================
-# Conta
-# =========================
 class Conta:
     def __init__(self, cliente, numero, agencia="0001"):
         self._saldo = 0.0
@@ -84,10 +64,6 @@ class Conta:
         self._saldo += valor
         return True
 
-
-# =========================
-# Conta Corrente
-# =========================
 class ContaCorrente(Conta):
     def __init__(self, cliente, numero, limite=500, limite_saques=3):
         super().__init__(cliente, numero)
@@ -109,10 +85,6 @@ class ContaCorrente(Conta):
 
         return super().sacar(valor)
 
-
-# =========================
-# Cliente
-# =========================
 class Cliente:
     def __init__(self, endereco):
         self.endereco = endereco
@@ -124,10 +96,6 @@ class Cliente:
     def realizar_transacao(self, conta: Conta, transacao: Transacao):
         transacao.registrar(conta)
 
-
-# =========================
-# Pessoa Física
-# =========================
 class PessoaFisica(Cliente):
     def __init__(self, nome, cpf, data_nascimento, endereco):
         super().__init__(endereco)
@@ -135,10 +103,6 @@ class PessoaFisica(Cliente):
         self.cpf = cpf
         self.data_nascimento = data_nascimento
 
-
-# =========================
-# Funções de apoio
-# =========================
 def filtrar_cliente(cpf, clientes):
     for cliente in clientes:
         if cliente.cpf == cpf:
@@ -156,10 +120,6 @@ def menu():
 [q] Sair
 => """
 
-
-# =========================
-# Programa principal
-# =========================
 clientes = []
 contas = []
 
